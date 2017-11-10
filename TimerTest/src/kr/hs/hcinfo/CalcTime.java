@@ -3,28 +3,21 @@ package kr.hs.hcinfo;
 public class CalcTime {
 	String timeString;
 	int timeInt;
-	public CalcTime() {
-		// TODO Auto-generated constructor stub
-		timeString = "";
+	public CalcTime(){
+		timeString = "00:00:00";
 		timeInt = 0;
 	}
-	public CalcTime(String st) {
-		// TODO Auto-generated constructor stub
-		timeString = st;
-		timeInt = strToInt(st);
+	public CalcTime(String tmString, int tmInt) {
+		timeString = tmString;
+		timeInt = tmInt;
 	}
-	public int strToInt(String st) {
-		st = st.trim();
-		String stsplit[] = st.split(":");
-		return Integer.parseInt(stsplit[0])*60*60 + Integer.parseInt(stsplit[1])*60 + Integer.parseInt(stsplit[2]);	
+	public CalcTime(String tmString) {
+		timeString = tmString;
+		timeInt = stringToInt();
 	}
-	
-	public CalcTime(int ti) {
-		// TODO Auto-generated constructor stub
-		timeInt = ti;
-		timeString = intToStr(ti);
-	}
-	public String intToStr(int n){
+	private String intToString() {
+		// TODO Auto-generated method stub
+		int n = timeInt;
 		String rtnValue="";
 		int rest;
 		int temp;
@@ -38,21 +31,53 @@ public class CalcTime {
 		
 		return rtnValue;
 	}
+	public CalcTime(int tmInt) {
+		timeInt = tmInt;
+		timeString = intToString();
+	}
+	private int stringToInt() {
+		// TODO Auto-generated method stub
+		String st = timeString;
+		String stsplit[] = st.split(":");
+		return Integer.parseInt(stsplit[0])*60*60 + Integer.parseInt(stsplit[1])*60 + Integer.parseInt(stsplit[2]);	
+	}
+	public static String intToString(int n) {
+		// TODO Auto-generated method stub
+		String rtnValue="";
+		int rest;
+		int temp;
+		temp = n/3600;
+		n %= 3600;
+		rtnValue += (temp<10)?"0"+temp+":":""+temp+":";
+		temp = n/60;
+		n %= 60;
+		rtnValue += (temp<10)?"0"+temp+":":""+temp+":";
+		rtnValue += (n<10)?"0"+n:""+n;
+		
+		return rtnValue;
+	}
+	public static int stringToInt(String st) {
+		String stsplit[] = st.split(":");
+		return Integer.parseInt(stsplit[0])*60*60 + Integer.parseInt(stsplit[1])*60 + Integer.parseInt(stsplit[2]);	
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return timeInt + " <-:-> " + timeString;
+	}
 	public String getTimeString() {
 		return timeString;
 	}
-
 	public void setTimeString(String timeString) {
 		this.timeString = timeString;
+		this.timeInt = stringToInt();
 	}
-
 	public int getTimeInt() {
 		return timeInt;
 	}
-
 	public void setTimeInt(int timeInt) {
 		this.timeInt = timeInt;
+		this.timeString = intToString();
 	}
-
-	public String toString() { return timeString; }
 }

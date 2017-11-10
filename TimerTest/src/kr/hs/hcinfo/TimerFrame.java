@@ -13,6 +13,7 @@ public class TimerFrame extends JFrame {
 	
 	private TimerPanel centerPanel;
 	private JPanel rightPanel;
+	
 	private JButton startButton;
 	private JButton pauseButton;
 	private JButton restartButton;
