@@ -19,7 +19,6 @@ public class CalcTime {
 		// TODO Auto-generated method stub
 		int n = timeInt;
 		String rtnValue="";
-		int rest;
 		int temp;
 		temp = n/3600;
 		n %= 3600;
@@ -44,7 +43,6 @@ public class CalcTime {
 	public static String intToString(int n) {
 		// TODO Auto-generated method stub
 		String rtnValue="";
-		int rest;
 		int temp;
 		temp = n/3600;
 		n %= 3600;

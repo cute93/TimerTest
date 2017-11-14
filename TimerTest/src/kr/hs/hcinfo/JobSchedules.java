@@ -1,6 +1,5 @@
 package kr.hs.hcinfo;
 
-import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -41,6 +40,7 @@ public class JobSchedules {
 	
 	public void saveFile(){
 		try {
+			@SuppressWarnings("resource")
 			BufferedWriter bw = new BufferedWriter(new FileWriter(jobFile));
 			for(JobSchedule js:schedule){
 				bw.write(CalcTime.intToString(js.jobTime));

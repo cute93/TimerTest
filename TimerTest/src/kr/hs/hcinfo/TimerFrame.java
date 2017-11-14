@@ -1,9 +1,11 @@
 package kr.hs.hcinfo;
 
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -35,7 +37,7 @@ public class TimerFrame extends JFrame {
 		// TODO Auto-generated method stub
 		centerPanel = new TimerPanel();
 		
-		rightPanel = new JPanel(new GridLayout(4, 1));
+		rightPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		startButton = new JButton("Start");
 		startButton.addActionListener(new ActionListener() {
 			
@@ -63,6 +65,7 @@ public class TimerFrame extends JFrame {
 				centerPanel.resetTime();
 			}
 		});
+				
 		exitButton = new JButton("Exit");
 		exitButton.addActionListener(new ActionListener() {
 			
@@ -84,10 +87,10 @@ public class TimerFrame extends JFrame {
 		rightPanel.add(pauseButton);
 		rightPanel.add(restartButton);
 		rightPanel.add(exitButton);
+		rightPanel.setBackground(Color.BLACK);
+		add(rightPanel, BorderLayout.SOUTH);
 		
-		add(rightPanel, BorderLayout.EAST);
-		
-		setSize(350, 150);
+		setSize(800, 600);
 		setVisible(true);
 	}
 

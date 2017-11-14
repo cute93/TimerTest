@@ -26,6 +26,7 @@ public class TimerPanel extends JPanel {
 		// TODO Auto-generated constructor stub
 		super(new GridLayout(2, 1));
 		setAlignmentX((float) 5.0);
+		setBackground(Color.BLACK);
 		timeDelay=0;
 		tm = new Timer(0, new ActionListener() {
 			
@@ -41,8 +42,9 @@ public class TimerPanel extends JPanel {
 		showJob = new JLabel("Job");
 		showJob.setHorizontalAlignment(JLabel.CENTER);
 		showLabel.setFont(new Font("±¼¸²", 1, 40));
+		showLabel.setForeground(Color.WHITE);
 		showJob.setFont(new Font("±¼¸²", 1, 40));
-		showJob.setForeground(Color.RED);
+		showJob.setForeground(Color.WHITE);
 		
 		add(showLabel);
 		add(showJob);
@@ -65,21 +67,29 @@ public class TimerPanel extends JPanel {
 		if(timeDelay>=nowschedule.getJobTime()){
 			nowTime++;	
 		}
-		if(nowTime>schedule.size()){
-			resetTime();
+		if(nowTime>=schedule.size()){
+			timeDelay = 0;
+			nowTime = 0;
+			repaint();
+			tm.stop();
 			return;
 		}
 		nowschedule = schedule.getSchedule().get(nowTime);
 		showJob.setText(nowschedule.getJobTodo());
-		if(nowschedule.getJobTime()-timeDelay<10){
+		showLabel.setFont(new Font("HY °ß°íµñ", 1, getWidth()/5));
+		showJob.setFont(new Font("HY °ß°íµñ", 1, getWidth()/8));
+		if(nowschedule.getJobTime()-timeDelay<=10){
 			if(timeDelay%2==0){
 				//showJob.setForeground(Color.BLACK);
 				showLabel.setForeground(Color.RED);
 			}else{
 				//showJob.setForeground(Color.RED);
-				showLabel.setForeground(Color.BLACK);
-				
+				showLabel.setForeground(Color.WHITE);
 			}
+			showJob.setForeground(Color.RED);
+		}else{
+			showJob.setForeground(Color.WHITE);
+			showLabel.setForeground(Color.WHITE);
 		}
 		showLabel.setText(showStr);
 	}
@@ -92,13 +102,11 @@ public class TimerPanel extends JPanel {
 		tm.stop();
 	}
 	public void resetTime() {
+		showJob.setForeground(Color.WHITE);
+		showLabel.setForeground(Color.WHITE);
 		timeDelay = 0;
 		nowTime = 0;
 		repaint();
 		tm.stop();
 	}
-	
-	
-	
-
 }
